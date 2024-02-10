@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+  <body>
+    <main>
+      <header id="enter-task">
+        <div id="add-tasks-section">
+          <div id="add-tasks">
+            <input
+              id="new-task-input"
+              type="text"
+              name="new-task"
+              placeholder="Enter A Task"
+            />
+            <br />
+            <button id="submit-task">Add Task</button>
+          </div>
+        </div>
+
+        <div id="task-metadata-container">
+          <h1 id="task-meta-data">
+            Task Metadata
+            <hr />
+          </h1>
+          <div id="new-to-do">
+            <p id="task-desc">Task: <span id="desc"></span></p>
+            <p id="task-deadline">Due Date: </p>  
+            <input type="date" name="date-and-time-due" id="date-and-time-due">
+            <br>
+            <p id="duration-of-task">Task Duration(hours):</p>
+            <input type="range" name="hours-range" id="hours-range" min="0.5" max="4" value="1.5" step="0.5"><span id="num-on-range"></span>
+            <br>
+            <input type="checkbox" name="repeat" id="repeat">  
+            <p id="repeat">Repeat Daily</p>
+            <br>
+            <button id="save-btn">Save</button>
+            <button id="discard-btn">Discard</button>
+          </div>
+      </header>
+      <section id="tasks-panel">
+        <h1>All due Tasks</h1>
+           
+        <hr />
+        <section id="tasks-contianer">
+          
+        </section>
+      </section>
+    </main>
+  </body>
+  <script src="script.js"></script>
+</html>

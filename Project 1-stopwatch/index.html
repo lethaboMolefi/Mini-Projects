@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: aqua;
+        margin: 0px;
+        overscroll-behavior-x: none;
+        overscroll-behavior-y: none;
+      }
+      #timer-buttons {
+        position: relative;
+        width: auto;
+        height: 100vh;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      #timer {
+        margin: 0px;
+        font-size: 5rem;
+      }
+
+      #movable {
+        position: relative;
+        top: 50%;
+      }
+
+      #buttons * {
+        width: 6rem;
+        height: 3rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main id="timer-buttons">
+      <section id="movable">
+        <p id="timer">
+          <span id="hours">00</span>:<span id="minutes">00</span>:<span
+            id="seconds"
+            >00</span
+          >
+        </p>
+        <div id="buttons">
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+          <button id="reset">Reset</button>
+        </div>
+      </section>
+    </main>
+    <script>
+      let hours = document.getElementById("hours");
+      let minutes = document.getElementById("minutes");
+      let seconds = document.getElementById("seconds");
+      let startBtn = document.getElementById("start");
+      let stopBtn = document.getElementById("stop");
+      let resetBtn = document.getElementById("reset");
+      var stopWatch;
+      let counter = 0;
+      startBtn.addEventListener("click", () => {
+        // counter++;
+        startBtn.disabled = true;
+        let second = 0,
+          minute = 0,
+          hour = 0;
+
+        stopWatch = setInterval(function () {
+          second++;
+          let secs = second % 60;
+          if (secs < 10) {
+            seconds.innerText = "0" + secs;
+          } else {
+            seconds.innerText = secs;
+          }
+
+          let mis = parseInt(second / 60);
+          if (mis < 10) {
+            minutes.innerText = "0" + mis;
+          } else {
+            minutes.innerText = mis;
+          }
+
+          let hrs = parseInt(mis / 60);
+          if (hrs < 10) {
+            hours.innerText = "0" + hrs;
+          } else {
+            hours.innerText = hrs;
+          }
+          // let secondsNum = Number(seconds.innerText);
+          // secondsNum += 1;
+          // if (secondsNum < 10) {
+          //   seconds.innerText = "0" + secondsNum;
+          // } else {
+          //   seconds.innerText = secondsNum;
+          // }
+
+          // if (secondsNum === 59) {
+          //   seconds.innerText = 0;
+          //   let minNum = Number(minutes.innerText);
+          //   minNum += 1;
+          //   if (minNum < 10) {
+          //     minutes.innerText = "0" + minNum;
+          //   } else {
+          //     minutes.innerText = minNum;
+          //   }
+          //   if (minNum === 59) {
+          //     minutes.innerText = 0;
+          //     seconds.innerText = 0;
+          //     let hourNum = Number(hours.innerText);
+          //     hourNum += 1;
+          //     if (hourNum < 10) {
+          //       hours.innerText = "0" + hourNum;
+          //     } else {
+          //       hours.innerText = hourNum;
+          //     }
+          //   }
+          // }
+        }, 1000);
+      });
+
+      stopBtn.addEventListener("click", () => {
+        startBtn.disabled = false;
+        clearInterval(stopWatch);
+        counter = 0;
+      });
+
+      resetBtn.addEventListener("click", () => {
+        counter = 0;
+        seconds.innerText = "00";
+        minutes.innerText = "00";
+        hours.innerText = "00";
+        clearInterval(stopWatch);
+      });
+    </script>
+  </body>
+</html>

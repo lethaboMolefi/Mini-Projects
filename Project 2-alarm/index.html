@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alarm</title>
+    <style>
+      main {
+        background-color: blue;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="local-time">
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span
+          id="seconds"
+          >00</span
+        >
+      </p>
+
+      <p id="alarm-time">
+        <span id="a-hours">--</span>:<span id="a-minutes">--</span>:<span
+          id="a-seconds"
+          >--</span
+        >
+      </p>
+    </main>
+    <p id="alarm-state">OFF</p>
+    <script>
+      // let localTime
+      let a_hours = window.prompt("Hours:");
+      let a_minutes = window.prompt("Minutes:");
+      let a_seconds = window.prompt("Seconds:");
+
+      if (a_seconds < 10 && a_seconds[0] != 0) {
+        a_seconds = "0" + a_seconds;
+      }
+
+      if (a_minutes < 10 && a_minutes[0] != 0) {
+        a_minutes = "0" + a_minutes;
+      }
+
+      if (a_hours < 10 && a_hours[0] != 0) {
+        a_hours = "0" + a_hours;
+      }
+      document.getElementById("a-hours").innerText = a_hours;
+      document.getElementById("a-minutes").innerText = a_minutes;
+      document.getElementById("a-seconds").innerText = a_seconds;
+
+      let alarmTime = a_hours + ":" + a_minutes + ":" + a_seconds;
+      setInterval(() => {
+        let currentDate = new Date();
+        let hour = currentDate.getHours();
+        let minute = currentDate.getMinutes();
+        let second = currentDate.getSeconds();
+
+        if (second < 10) {
+          second = "0" + second;
+        }
+
+        if (minute < 10) {
+          minute = "0" + minute;
+        }
+        if (hour < 10) {
+          hour = "0" + hour;
+        }
+        document.getElementById("hours").innerText = hour;
+        document.getElementById("minutes").innerText = minute;
+        document.getElementById("seconds").innerText = second;
+
+        let localTime = hour + ":" + minute + ":" + second;
+
+        // window.alert(localTime + "  " + alarmTime);
+        if (localTime === alarmTime) {
+          document.getElementById("alarm-state").innerText = "ON";
+          // document.getElementById("alarm-state").style.backgroundColor = green;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
